@@ -45,7 +45,8 @@ jobs:
         export DISPLAY=:99
         Xvfb :99 &
 
-    -run: |
+    - run: |
+      printenv
       glxinfo
 
     - run: |
