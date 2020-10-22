@@ -46,8 +46,8 @@ jobs:
         Xvfb :99 &
 
     - run: |
-      printenv
-      glxinfo
+        printenv
+        glxinfo
 
     - run: |
         go build -v
