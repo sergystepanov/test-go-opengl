@@ -23,7 +23,7 @@ jobs:
 
     - run: |
         sudo apt-get update
-        sudo apt-get install xvfb libgl1-mesa-glx libsdl2-dev
+        sudo apt-get install xvfb libgl1-mesa-glx libsdl2-dev mesa-utils
 
     - uses: actions/cache@v2
       with:
@@ -39,6 +39,9 @@ jobs:
             curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
             dep ensure
         fi
+
+    - run: |
+        glxinfo
 
     - run: |
         go build -v
