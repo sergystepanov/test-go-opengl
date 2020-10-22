@@ -22,8 +22,8 @@ jobs:
       uses: actions/checkout@v2
 
     - run: |
-        sudo apt-get update
-        sudo apt-get install xvfb libgl1-mesa-glx libsdl2-dev mesa-utils
+        sudo apt-get update -qq
+        sudo apt-get install -qq xvfb libgl1-mesa-glx libsdl2-dev mesa-utils
 
     - uses: actions/cache@v2
       with:
@@ -41,10 +41,8 @@ jobs:
         fi
 
     - run: |
-        glxinfo
-
-    - run: |
-        go build -v
         export DISPLAY=:99
         Xvfb :99 &
+        glxinfo
+        go build -v
         go run main.go
