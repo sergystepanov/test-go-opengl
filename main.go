@@ -22,8 +22,8 @@ func main() {
 	defer sdl.Quit()
 
 	sdl.GLSetAttribute(sdl.GL_CONTEXT_PROFILE_MASK, sdl.GL_CONTEXT_PROFILE_CORE)
-	//sdl.GLSetAttribute(sdl.GL_CONTEXT_MAJOR_VERSION, 3)
-	//sdl.GLSetAttribute(sdl.GL_CONTEXT_MINOR_VERSION, 1)
+	sdl.GLSetAttribute(sdl.GL_CONTEXT_MAJOR_VERSION, 3)
+	sdl.GLSetAttribute(sdl.GL_CONTEXT_MINOR_VERSION, 1)
 
 	window, err = sdl.CreateWindow(
 		winTitle,
