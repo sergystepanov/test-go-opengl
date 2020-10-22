@@ -20,7 +20,7 @@ jobs:
 
     - name: Check out code into the Go module directory
       uses: actions/checkout@v2
-      
+
     - run: |
         sudo apt-get update
         sudo apt-get install -y xvfb libgl1-mesa-glx libsdl2-dev
@@ -34,4 +34,5 @@ jobs:
         fi
 
     - run: |
+        go build -v
         xvfb-run go run main.go
