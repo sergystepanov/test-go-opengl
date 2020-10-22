@@ -41,14 +41,11 @@ jobs:
         fi
 
 
-    - run: |
-        export DISPLAY=:99
+    - env:
+        DISPLAY: ":99"
+      run: |
         Xvfb :99 &
-
-    - run: |
         printenv
         glxinfo
-
-    - run: |
         go build -v
         go run main.go
