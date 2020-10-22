@@ -43,5 +43,4 @@ jobs:
     - run: |
         xvfb-run --auto-servernum glxinfo
         go build -v
-        export MESA_GL_VERSION_OVERRIDE=3.3COMPAT
-        xvfb-run --auto-servernum go run main.go
+        export MESA_GL_VERSION_OVERRIDE=3.3COMPAT & xvfb-run --auto-servernum go run main.go
