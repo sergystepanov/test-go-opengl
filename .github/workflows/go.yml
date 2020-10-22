@@ -40,12 +40,7 @@ jobs:
             dep ensure
         fi
 
-
-    - env:
-        DISPLAY: ":99"
-      run: |
-        Xvfb :99 &
-        printenv
-        glxinfo
+    - run: |
+        xvfb-run --auto-servernum glxinfo
         go build -v
-        go run main.go
+        xvfb-run --auto-servernum go run main.go
