@@ -40,9 +40,14 @@ jobs:
             dep ensure
         fi
 
+
     - run: |
         export DISPLAY=:99
         Xvfb :99 &
-        glxinfo
+
+    -run: |
+      glxinfo
+
+    - run: |
         go build -v
         go run main.go
