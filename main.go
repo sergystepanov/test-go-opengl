@@ -1,34 +1,30 @@
 package main
 
 import (
-	"fmt"
+	"log"
+	"time"
+
 	"github.com/go-gl/gl/v2.1/gl"
 	"github.com/veandco/go-sdl2/sdl"
-	"time"
 )
 
 func main() {
-	var winTitle = "Test"
-	var winWidth, winHeight int32 = 160, 120
+	log.Printf("[Start]")
+	waitSec := 3.0
+
 	var window *sdl.Window
 	var context sdl.GLContext
-	//var event sdl.Event
-	//var running bool
-	var err error
+	var event sdl.Event
 
-	if err = sdl.Init(sdl.INIT_VIDEO); err != nil {
+	if err := sdl.Init(sdl.INIT_VIDEO); err != nil {
 		panic(err)
 	}
 	defer sdl.Quit()
 
-	sdl.GLSetAttribute(sdl.GL_CONTEXT_PROFILE_MASK, sdl.GL_CONTEXT_PROFILE_CORE)
-	sdl.GLSetAttribute(sdl.GL_CONTEXT_MAJOR_VERSION, 3)
-	sdl.GLSetAttribute(sdl.GL_CONTEXT_MINOR_VERSION, 3)
-
-	window, err = sdl.CreateWindow(
-		winTitle,
+	window, err := sdl.CreateWindow(
+		"Test",
 		sdl.WINDOWPOS_UNDEFINED, sdl.WINDOWPOS_UNDEFINED,
-		winWidth, winHeight,
+		320, 240,
 		sdl.WINDOW_OPENGL,
 	)
 	if err != nil {
@@ -49,32 +45,37 @@ func main() {
 	gl.ClearColor(0, 0, 0, 1.0)
 	gl.ClearDepth(1)
 	gl.DepthFunc(gl.LEQUAL)
-	gl.Viewport(0, 0, winWidth, winHeight)
+	w, h := window.GetSize()
+	gl.Viewport(0, 0, w, h)
 
-	//running = true
-	//for running {
-	//	for event = sdl.PollEvent(); event != nil; event = sdl.PollEvent() {
-	//		switch t := event.(type) {
-	//		case *sdl.QuitEvent:
-	//			running = false
-	//		case *sdl.MouseMotionEvent:
-	//			fmt.Printf("[%d ms] MouseMotion\tid:%d\tx:%d\ty:%d\txrel:%d\tyrel:%d\n", t.Timestamp, t.Which, t.X, t.Y, t.XRel, t.YRel)
-	//		}
-	//	}
+	start := time.Now()
+	running := true
+	for running {
+		for event = sdl.PollEvent(); event != nil; event = sdl.PollEvent() {
+			switch event.(type) {
+			case *sdl.QuitEvent:
+				running = false
+			}
+		}
 
-	gl.Clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT)
+		gl.Clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT)
 
-	gl.Begin(gl.TRIANGLES)
-	gl.Color3f(1.0, 0.0, 0.0)
-	gl.Vertex2f(0.5, 0.0)
-	gl.Color3f(0.0, 1.0, 0.0)
-	gl.Vertex2f(-0.5, -0.5)
-	gl.Color3f(0.0, 0.0, 1.0)
-	gl.Vertex2f(-0.5, 0.5)
-	gl.End()
+		gl.Begin(gl.TRIANGLES)
+		gl.Color3f(1.0, 1.0, 0.0)
+		gl.Vertex2f(0.0, 0.75)
+		gl.Vertex2f(0.75, -0.75)
+		gl.Vertex2f(-0.75, -0.75)
+		gl.Color3f(0.0, 0.0, 0.0)
+		gl.Vertex2f(-0.40, 0.0)
+		gl.Vertex2f(0.0, -0.77)
+		gl.Vertex2f(0.40, 0.0)
+		gl.End()
 
-	window.GLSwap()
-	time.Sleep(3 * time.Second)
-	//}
-	fmt.Printf("[End]")
+		window.GLSwap()
+		if time.Since(start).Seconds() > waitSec {
+			running = false
+		}
+	}
+
+	log.Printf("[End]")
 }
