@@ -41,6 +41,8 @@ func main() {
 		panic(err)
 	}
 
+	printGlInfo()
+
 	gl.Enable(gl.DEPTH_TEST)
 	gl.ClearColor(0, 0, 0, 1.0)
 	gl.ClearDepth(1)
@@ -78,4 +80,11 @@ func main() {
 	}
 
 	log.Printf("[End]")
+}
+
+func printGlInfo() {
+	log.Printf("[OpenGL] Version: %v", gl.GoStr(gl.GetString(gl.VERSION)))
+	log.Printf("[OpenGL] Vendor: %v", gl.GoStr(gl.GetString(gl.VENDOR)))
+	log.Printf("[OpenGL] Renderer: %v", gl.GoStr(gl.GetString(gl.RENDERER)))
+	log.Printf("[OpenGL] GLSL Version: %v", gl.GoStr(gl.GetString(gl.SHADING_LANGUAGE_VERSION)))
 }
