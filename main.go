@@ -21,6 +21,16 @@ func main() {
 	}
 	defer sdl.Quit()
 
+	if err := sdl.GLSetAttribute(sdl.GL_CONTEXT_PROFILE_MASK, sdl.GL_CONTEXT_PROFILE_CORE); err != nil {
+		log.Printf("[SDL] error: %v", err)
+	}
+	if err := sdl.GLSetAttribute(sdl.GL_CONTEXT_MAJOR_VERSION, 3); err != nil {
+		log.Printf("[SDL] attribute error: %v", err)
+	}
+	if err := sdl.GLSetAttribute(sdl.GL_CONTEXT_MINOR_VERSION, 3); err != nil {
+		log.Printf("[SDL] attribute error: %v", err)
+	}
+
 	window, err := sdl.CreateWindow(
 		"Test",
 		sdl.WINDOWPOS_UNDEFINED, sdl.WINDOWPOS_UNDEFINED,
