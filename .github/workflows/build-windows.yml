@@ -34,7 +34,15 @@ jobs:
           msystem: MINGW64
           path-type: inherit
           update: true
-          install: 'mingw-w64-x86_64-gcc mingw-w64-x86_64-pkg-config mingw-w64-x86_64-mesa mingw-w64-x86_64-SDL2'
+          install: 'mingw-w64-x86_64-gcc mingw-w64-x86_64-mesa mingw-w64-x86_64-SDL2'
+
+      - name: OpenGL
+        shell: msys2 {0}
+        run: |
+          wget https://github.com/pal1000/mesa-dist-win/releases/download/20.2.1/mesa3d-20.2.1-release-mingw.7z
+          "/c/Program Files/7-Zip/7z.exe" x mesa3d-20.2.1-release-mingw.7z -omesa
+          echo -e " 2\r\n 8\r\n " >> commands
+          ./mesa/systemwidedeploy.cmd < ./commands
 
       - name: Build
         shell: msys2 {0}
