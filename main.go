@@ -2,13 +2,32 @@ package main
 
 import (
 	"log"
+	"sync"
 	"time"
 
+	"github.com/faiface/mainthread"
 	"github.com/go-gl/gl/v2.1/gl"
 	"github.com/veandco/go-sdl2/sdl"
 )
 
 func main() {
+	mainthread.Run(run)
+}
+
+func run() {
+	var wg sync.WaitGroup
+	wg.Add(1)
+	go func() {
+		mainthread.Call(func() {
+			start()
+			wg.Done()
+		})
+	}()
+
+	wg.Wait()
+}
+
+func start() {
 	log.Printf("[Start]")
 	waitSec := 3.0
 
