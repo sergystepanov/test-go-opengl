@@ -32,7 +32,6 @@ jobs:
       - run: |
           brew install sdl2
 
-      - name: Build
+      - name: Test
         run: |
-          go build -v
           go test -run TestRun ./app

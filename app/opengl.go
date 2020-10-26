@@ -1,6 +1,7 @@
 package app
 
 import (
+	"github.com/faiface/mainthread"
 	"github.com/go-gl/gl/v2.1/gl"
 	"github.com/veandco/go-sdl2/sdl"
 	"log"
@@ -8,6 +9,10 @@ import (
 )
 
 func Start() {
+	mainthread.Call(Main)
+}
+
+func Main() {
 	log.Printf("[Start]")
 	waitSec := 3.0
 
