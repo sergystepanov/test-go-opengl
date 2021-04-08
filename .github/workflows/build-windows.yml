@@ -47,3 +47,4 @@ jobs:
         run: |
           go build -v
           go test -run TestSDL2 ./app
+          go test -run TestGLFW ./app

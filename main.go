@@ -6,7 +6,7 @@ import (
 )
 
 func run() {
-	mainthread.Call(app.Main)
+	mainthread.Call(app.MainGLFW)
 }
 
 func main() {

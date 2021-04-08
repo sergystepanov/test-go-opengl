@@ -37,3 +37,4 @@ jobs:
         xvfb-run --auto-servernum glxinfo
         go build -v
         export MESA_GL_VERSION_OVERRIDE=3.3COMPAT & xvfb-run --auto-servernum go test -run TestSDL2 ./app
+        export MESA_GL_VERSION_OVERRIDE=3.3COMPAT & xvfb-run --auto-servernum go test -run TestGLFW ./app

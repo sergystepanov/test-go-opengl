@@ -1,10 +1,11 @@
 package app
 
 import (
-	"github.com/faiface/mainthread"
 	"os"
 	"runtime"
 	"testing"
+
+	"github.com/faiface/mainthread"
 )
 
 func init() {
