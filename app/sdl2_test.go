@@ -17,6 +17,6 @@ func TestMain(m *testing.M) {
 	})
 }
 
-func TestRun(t *testing.T) {
+func TestSDL2(t *testing.T) {
 	Start()
 }

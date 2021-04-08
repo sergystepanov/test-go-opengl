@@ -16,7 +16,7 @@ jobs:
     - name: Set up Go 1.x
       uses: actions/setup-go@v2
       with:
-        go-version: ^1.15
+        go-version: ^1.16
 
     - name: Check out code into the Go module directory
       uses: actions/checkout@v2
@@ -24,13 +24,6 @@ jobs:
     - run: |
         sudo apt-get update -qq
         sudo apt-get install -qq xvfb libgl1-mesa-glx libsdl2-dev mesa-utils
-
-    - uses: actions/cache@v2
-      with:
-        path: ~/go/pkg/mod
-        key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
-        restore-keys: |
-          ${{ runner.os }}-go-
 
     - name: Get dependencies
       run: |
@@ -43,4 +36,4 @@ jobs:
     - run: |
         xvfb-run --auto-servernum glxinfo
         go build -v
-        export MESA_GL_VERSION_OVERRIDE=3.3COMPAT & xvfb-run --auto-servernum go run main.go
+        export MESA_GL_VERSION_OVERRIDE=3.3COMPAT & xvfb-run --auto-servernum go test -run TestSDL2 ./app

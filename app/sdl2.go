@@ -1,11 +1,12 @@
 package app
 
 import (
+	"log"
+	"time"
+
 	"github.com/faiface/mainthread"
 	"github.com/go-gl/gl/v2.1/gl"
 	"github.com/veandco/go-sdl2/sdl"
-	"log"
-	"time"
 )
 
 func Start() {
