@@ -2,6 +2,7 @@ package app
 
 import (
 	"log"
+	"runtime"
 	"time"
 
 	"github.com/faiface/mainthread"
@@ -23,6 +24,13 @@ func MainGLFW() {
 		panic(err)
 	}
 	defer glfw.Terminate()
+
+	if runtime.GOOS == "darwin" {
+		glfw.WindowHint(glfw.ContextVersionMajor, 3)
+		glfw.WindowHint(glfw.ContextVersionMinor, 3)
+		glfw.WindowHint(glfw.OpenGLProfile, glfw.OpenGLCoreProfile)
+		glfw.WindowHint(glfw.OpenGLForwardCompatible, glfw.True)
+	}
 
 	window, err := glfw.CreateWindow(320, 240, "Test", nil, nil)
 	if err != nil {
