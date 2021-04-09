@@ -27,5 +27,5 @@ jobs:
 
       - name: Test
         run: |
-          go test -run TestSDL2 ./app
+          glxinfo
           go test -run TestGLFW ./app
