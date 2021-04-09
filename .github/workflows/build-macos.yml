@@ -23,7 +23,7 @@ jobs:
           go get -v -t -d ./...
 
       - run: |
-          brew install sdl2
+          brew install glxinfo sdl2
 
       - name: Test
         run: |
