@@ -27,5 +27,4 @@ jobs:
 
       - name: Test
         run: |
-          glxinfo
           go test -run TestGLFW ./app
