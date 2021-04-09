@@ -32,8 +32,9 @@ func MainGLFW() {
 		//glfw.WindowHint(glfw.GreenBits, 8)
 		//glfw.WindowHint(glfw.BlueBits, 8)
 		glfw.WindowHint(glfw.ContextVersionMajor, 3)
-		glfw.WindowHint(glfw.ContextVersionMinor, 3)
-		glfw.WindowHint(glfw.OpenGLProfile, glfw.OpenGLCompatProfile)
+		glfw.WindowHint(glfw.ContextVersionMinor, 2)
+		//glfw.WindowHint(glfw.OpenGLProfile, glfw.OpenGLCoreProfile)
+		glfw.WindowHint(glfw.OpenGLForwardCompatible, glfw.True)
 	}
 
 	window, err := glfw.CreateWindow(320, 240, "Test", nil, nil)
