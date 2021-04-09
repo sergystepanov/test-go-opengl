@@ -26,6 +26,8 @@ func MainGLFW() {
 	defer glfw.Terminate()
 
 	if runtime.GOOS == "darwin" {
+		log.Printf("Oh no, it seems that you are running it on macOS")
+		glfw.WindowHint(glfw.StencilBits, 8)
 		glfw.WindowHint(glfw.ContextVersionMajor, 3)
 		glfw.WindowHint(glfw.ContextVersionMinor, 3)
 		glfw.WindowHint(glfw.OpenGLProfile, glfw.OpenGLCoreProfile)
