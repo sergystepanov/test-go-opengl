@@ -23,8 +23,8 @@ jobs:
           go get -v -t -d ./...
 
       - run: |
-          brew install xquartz sdl2
+          brew install sdl2
 
       - name: Test
         run: |
-          go test -run TestGLFW ./app
+          go test --tags=gles2 -run TestGLFW ./app
