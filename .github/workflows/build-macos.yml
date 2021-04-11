@@ -27,4 +27,4 @@ jobs:
 
       - name: Test
         run: |
-          go test --tags=gles2 -run TestGLFW ./app
+          go test -run TestGLFW ./app
