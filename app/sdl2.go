@@ -4,13 +4,13 @@ import (
 	"log"
 	"time"
 
-	"github.com/faiface/mainthread"
-	"github.com/go-gl/gl/v2.1/gl"
+	"github.com/sergystepanov/test-go-opengl/internal/gl"
+	"github.com/sergystepanov/test-go-opengl/internal/thread"
 	"github.com/veandco/go-sdl2/sdl"
 )
 
 func Start() {
-	mainthread.Call(Main)
+	thread.Call(Main)
 }
 
 func Main() {

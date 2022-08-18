@@ -5,7 +5,7 @@ import (
 	"runtime"
 	"testing"
 
-	"github.com/faiface/mainthread"
+	"github.com/sergystepanov/test-go-opengl/internal/thread"
 )
 
 func init() {
@@ -13,7 +13,7 @@ func init() {
 }
 
 func TestMain(m *testing.M) {
-	mainthread.Run(func() {
+	thread.Run(func() {
 		os.Exit(m.Run())
 	})
 }

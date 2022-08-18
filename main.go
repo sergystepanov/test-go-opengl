@@ -1,14 +1,14 @@
 package main
 
 import (
-	"github.com/faiface/mainthread"
 	"github.com/sergystepanov/test-go-opengl/app"
+	"github.com/sergystepanov/test-go-opengl/internal/thread"
 )
 
 func run() {
-	mainthread.Call(app.MainGLFW)
+	thread.Call(app.MainGLFW)
 }
 
 func main() {
-	mainthread.Run(run)
+	thread.Run(run)
 }

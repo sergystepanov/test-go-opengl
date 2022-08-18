@@ -10,5 +10,5 @@ func init() {
 }
 
 func TestGLFW(t *testing.T) {
-	StartGLFW()
+	Start()
 }
