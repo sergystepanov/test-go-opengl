@@ -22,8 +22,8 @@ jobs:
         run: |
           go get -v -t -d ./...
 
-#      - run: |
-#          brew install sdl2
+      - run: |
+          brew install sdl2
 
       - name: Test
         run: |
