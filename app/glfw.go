@@ -2,7 +2,6 @@ package app
 
 import (
 	"log"
-	"runtime"
 	"time"
 
 	"github.com/go-gl/glfw/v3.3/glfw"
@@ -25,18 +24,18 @@ func MainGLFW() {
 	}
 	defer glfw.Terminate()
 
-	if runtime.GOOS == "darwin" {
-		log.Printf("Oh no, it seems that you are running it on macOS")
-		glfw.WindowHint(glfw.StencilBits, 8)
-		glfw.WindowHint(glfw.RedBits, 8)
-		glfw.WindowHint(glfw.GreenBits, 8)
-		glfw.WindowHint(glfw.BlueBits, 8)
-		glfw.WindowHint(glfw.AlphaBits, 8)
-		glfw.WindowHint(glfw.ContextVersionMajor, 3)
-		glfw.WindowHint(glfw.ContextVersionMinor, 2)
-		glfw.WindowHint(glfw.OpenGLProfile, glfw.OpenGLCoreProfile)
-		glfw.WindowHint(glfw.OpenGLForwardCompatible, glfw.True)
-	}
+	//if runtime.GOOS == "darwin" {
+	//	log.Printf("Oh no, it seems that you are running it on macOS")
+	//	glfw.WindowHint(glfw.StencilBits, 8)
+	//	glfw.WindowHint(glfw.RedBits, 8)
+	//	glfw.WindowHint(glfw.GreenBits, 8)
+	//	glfw.WindowHint(glfw.BlueBits, 8)
+	//	glfw.WindowHint(glfw.AlphaBits, 8)
+	//	glfw.WindowHint(glfw.ContextVersionMajor, 3)
+	//	glfw.WindowHint(glfw.ContextVersionMinor, 2)
+	//	glfw.WindowHint(glfw.OpenGLProfile, glfw.OpenGLCoreProfile)
+	//	glfw.WindowHint(glfw.OpenGLForwardCompatible, glfw.True)
+	//}
 
 	window, err := glfw.CreateWindow(320, 240, "Test", nil, nil)
 	if err != nil {
