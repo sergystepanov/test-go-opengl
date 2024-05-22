@@ -4,7 +4,6 @@ import (
 	"log"
 	"time"
 
-	"github.com/sergystepanov/test-go-opengl/internal/gl"
 	"github.com/sergystepanov/test-go-opengl/internal/thread"
 	"github.com/veandco/go-sdl2/sdl"
 )
@@ -42,18 +41,10 @@ func Main() {
 	}
 	defer sdl.GLDeleteContext(context)
 
-	if err = gl.Init(); err != nil {
+	w, h := window.GetSize()
+	if err = iGL(int(w), int(h)); err != nil {
 		panic(err)
 	}
-
-	printGlInfo()
-
-	gl.Enable(gl.DEPTH_TEST)
-	gl.ClearColor(0, 0, 0, 1.0)
-	gl.ClearDepth(1)
-	gl.DepthFunc(gl.LEQUAL)
-	w, h := window.GetSize()
-	gl.Viewport(0, 0, w, h)
 
 	start := time.Now()
 	running := true
@@ -64,20 +55,7 @@ func Main() {
 				running = false
 			}
 		}
-
-		gl.Clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT)
-
-		gl.Begin(gl.TRIANGLES)
-		gl.Color3f(1.0, 1.0, 0.0)
-		gl.Vertex2f(0.0, 0.75)
-		gl.Vertex2f(0.75, -0.75)
-		gl.Vertex2f(-0.75, -0.75)
-		gl.Color3f(0.0, 0.0, 0.0)
-		gl.Vertex2f(-0.40, 0.0)
-		gl.Vertex2f(0.0, -0.77)
-		gl.Vertex2f(0.40, 0.0)
-		gl.End()
-
+		triforce()
 		window.GLSwap()
 		if time.Since(start).Seconds() > waitSec {
 			running = false
@@ -85,11 +63,4 @@ func Main() {
 	}
 
 	log.Printf("[End]")
-}
-
-func printGlInfo() {
-	log.Printf("[OpenGL] Version: %v", gl.GoStr(gl.GetString(gl.VERSION)))
-	log.Printf("[OpenGL] Vendor: %v", gl.GoStr(gl.GetString(gl.VENDOR)))
-	log.Printf("[OpenGL] Renderer: %v", gl.GoStr(gl.GetString(gl.RENDERER)))
-	log.Printf("[OpenGL] GLSL Version: %v", gl.GoStr(gl.GetString(gl.SHADING_LANGUAGE_VERSION)))
 }
