@@ -23,7 +23,7 @@ jobs:
 
       - name: Test
         run: |
-          which xvfb
+          which Xvfb
           go test -run TestSDL2 ./app
           # go test -run TestGLFW ./app
           Xvfb :1337 & export DISPLAY=:1337 & go test -run TestGlut ./app
