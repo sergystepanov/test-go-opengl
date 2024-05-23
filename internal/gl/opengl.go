@@ -108,6 +108,8 @@ typedef void  (APIENTRYP GPCOLOR3F)(GLfloat red, GLfloat green, GLfloat blue);
 
 typedef void  (APIENTRYP GPVERTEX2F)(GLfloat x, GLfloat y);
 
+typedef void (APIENTRYP GPREADPIXELS)(GLint x, GLint y, GLsizei width, GLsizei height, GLenum format, GLenum type, void *pixels);
+
 static void glowClearColor(GPCLEARCOLOR fnptr, GLfloat red, GLfloat green, GLfloat blue, GLfloat alpha) {
     (*fnptr)(red, green, blue, alpha);
 }
@@ -141,6 +143,9 @@ static void glowColor3f(GPCOLOR3F fnptr, GLfloat red, GLfloat green, GLfloat blu
 static void glowVertex2f(GPVERTEX2F fnptr, GLfloat x, GLfloat y) {
     (*fnptr)(x, y);
 }
+static void readPixels(GPREADPIXELS ptr, GLint x, GLint y, GLsizei width, GLsizei height, GLenum format, GLenum type, void *pixels) {
+  (*ptr)(x, y, width, height, format, type, pixels);
+}
 */
 import "C"
 import (
@@ -158,6 +163,8 @@ const (
 	COLOR_BUFFER_BIT         = 0x00004000
 	DEPTH_BUFFER_BIT         = 0x00000100
 	TRIANGLES                = 0x0004
+	RGB                      = 0x1907
+	UNSIGNED_BYTE            = 0x1401
 )
 
 var (
@@ -172,6 +179,7 @@ var (
 	gpEnd        C.GPEND
 	gpColor3f    C.GPCOLOR3F
 	gpVertex2f   C.GPVERTEX2F
+	gpReadPixels C.GPREADPIXELS
 )
 
 func Init() error { return InitWithProcAddrFunc(getProcAddress) }
@@ -210,6 +218,9 @@ func InitWithProcAddrFunc(getProcAddr func(name string) unsafe.Pointer) error {
 	if gpVertex2f = (C.GPVERTEX2F)(getProcAddr("glVertex2f")); gpVertex2f == nil {
 		return errors.New("glVertex2f")
 	}
+	if gpReadPixels = (C.GPREADPIXELS)(getProcAddr("glReadPixels")); gpReadPixels == nil {
+		return errors.New("glReadPixels")
+	}
 	return nil
 }
 
@@ -243,3 +254,7 @@ func getProcAddress(name string) unsafe.Pointer {
 }
 
 func GoStr(str *uint8) string { return C.GoString((*C.char)(unsafe.Pointer(str))) }
+
+func ReadPixels(x int32, y int32, width int32, height int32, format uint32, xtype uint32, pixels unsafe.Pointer) {
+	C.readPixels(gpReadPixels, (C.GLint)(x), (C.GLint)(y), (C.GLsizei)(width), (C.GLsizei)(height), (C.GLenum)(format), (C.GLenum)(xtype), pixels)
+}

@@ -19,9 +19,10 @@ jobs:
           go-version: 'stable'
 
       - run: |
-          brew install sdl2
+          brew install sdl2 freeglut
 
       - name: Test
         run: |
           go test -run TestSDL2 ./app
 #💀       go test -run TestGLFW ./app
+          go test -run TestGlut ./app

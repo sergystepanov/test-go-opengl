@@ -20,7 +20,7 @@ jobs:
 
       - run: |
           sudo apt-get update -qq
-          sudo apt-get install -qq xvfb libgl1-mesa-glx libsdl2-dev mesa-utils
+          sudo apt-get install -qq xvfb libgl1-mesa-glx libsdl2-dev mesa-utils freeglut3-dev
 
       - env:
           MESA_GL_VERSION_OVERRIDE: 3.3COMPAT
@@ -29,3 +29,4 @@ jobs:
           go build -v
           xvfb-run --auto-servernum go test -run TestSDL2 ./app
           xvfb-run --auto-servernum go test -run TestGLFW ./app
+          xvfb-run --auto-servernum go test -run TestGlut ./app

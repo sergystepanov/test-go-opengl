@@ -27,6 +27,7 @@ jobs:
             mingw-w64-x86_64-gcc
             mingw-w64-x86_64-mesa
             mingw-w64-x86_64-SDL2
+            mingw-w64-x86_64-freeglut
 
       - name: OpenGL
         env:
@@ -46,3 +47,4 @@ jobs:
           go build -v
           go test -run TestSDL2 ./app
           go test -run TestGLFW ./app
+          go test -run TestGlut ./app
