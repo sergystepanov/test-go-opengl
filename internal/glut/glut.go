@@ -7,7 +7,7 @@ package glut
 
 #include <stdlib.h>
 #ifdef __APPLE__
-#include <GLUT/glut.h>
+#include <GLUT/freeglut.h>
 #else
 #include <GL/freeglut.h>
 #endif
