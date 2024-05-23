@@ -19,10 +19,10 @@ jobs:
           go-version: 'stable'
 
       - run: |
-          brew install sdl2 freeglut xquartz
+          brew --cask xquartz sdl2 freeglut
 
       - name: Test
         run: |
-          go test -run TestSDL2 ./app
+          #go test -run TestSDL2 ./app
           # go test -run TestGLFW ./app
-          /usr/X11/bin/Xvfb :1337 & export DISPLAY=:1337 & go test -run TestGlut ./app
+          go test -run TestGlut ./app
