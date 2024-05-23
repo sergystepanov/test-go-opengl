@@ -3,6 +3,7 @@ package glut
 /*
 #cgo windows pkg-config: freeglut
 #cgo linux LDFLAGS: -lGL -lGLU -lglut
+#cgo darwin pkg-config: glut
 #cgo darwin LDFLAGS: -lglut -framework OpenGL
 
 #include <stdlib.h>
