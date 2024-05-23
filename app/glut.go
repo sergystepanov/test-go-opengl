@@ -16,7 +16,7 @@ func StartGlut() {
 
 func MainGlut() {
 	log.Printf("[Start]")
-	waitSec := 3.0
+	waitSec := 1.0
 	ww, wh := 320, 240
 
 	glut.Init()
@@ -38,15 +38,16 @@ func MainGlut() {
 			toRGBA(pixels, ww, wh, "./glut.png")
 		}
 	})
+	glut.MainLoopEvent()
 	go glut.MainLoop()
 
 	start := time.Now()
 	for running {
 		if time.Since(start).Seconds() > waitSec {
 			running = false
+			glut.PostRedisplay()
+			glut.MainLoopEvent()
 		}
-		glut.PostRedisplay()
-		glut.MainLoopEvent()
 	}
 	log.Printf("[End]")
 }
