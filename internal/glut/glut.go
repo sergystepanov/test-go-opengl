@@ -3,10 +3,14 @@ package glut
 /*
 #cgo windows pkg-config: freeglut
 #cgo linux LDFLAGS: -lGL -lGLU -lglut
-#cgo darwin LDFLAGS: -framework GLUT -framework OpenGL
+#cgo darwin LDFLAGS: -lglut -framework OpenGL
 
 #include <stdlib.h>
+#ifdef __APPLE__
+#include <GLUT/glut.h>
+#else
 #include <GL/freeglut.h>
+#endif
 
 extern void goDisplay();
 
