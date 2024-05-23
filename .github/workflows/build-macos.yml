@@ -19,7 +19,7 @@ jobs:
           go-version: 'stable'
 
       - run: |
-          brew install sdl2 freeglut
+          brew install sdl2 freeglut xquartz
 
       - name: Test
         run: |
