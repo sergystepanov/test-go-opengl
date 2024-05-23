@@ -6,11 +6,7 @@ package glut
 #cgo darwin LDFLAGS: -framework GLUT -framework OpenGL
 
 #include <stdlib.h>
-#ifdef __APPLE__
-#include <GLUT/freeglut.h>
-#else
 #include <GL/freeglut.h>
-#endif
 
 extern void goDisplay();
 
